@@ -21,7 +21,7 @@ locals {
 
   // hyunsu application
   hyunsu-application-name = "hyunsu-application"
-  hyunsu-application-version = "1.0.0"
+  hyunsu-application-version = "1.0.1"
   hyunsu-application-namespace = "hyunsu-application"
 }
 
