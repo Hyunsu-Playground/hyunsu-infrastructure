@@ -11,17 +11,17 @@ locals {
 
   // argocd
   argocd-name      = "argocd"
-  argocd-version   = "4.8.11"
+  argocd-version   = "4.8.12"
   argocd-namespace = "argocd"
 
   //istio
   istio-name      = "istio"
-  istio-version   = "1.0.44"
+  istio-version   = "1.0.45"
   istio-namespace = "istio-system"
 
   // hyunsu application
   hyunsu-application-name = "hyunsu-application"
-  hyunsu-application-version = "1.0.1"
+  hyunsu-application-version = "1.0.5"
   hyunsu-application-namespace = "hyunsu-application"
 }
 
