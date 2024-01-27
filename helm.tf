@@ -1,8 +1,6 @@
 provider "helm" {
   kubernetes {
-    host                   = module.eksv2.cluster_endpoint
-    cluster_ca_certificate = module.eksv2.cluster_ca_certificate
-    token                  = module.eksv2.cluster_auth_token
+    config_path = "~/.kube/config"
   }
 }
 
@@ -11,7 +9,7 @@ locals {
 
   // argocd
   argocd-name      = "argocd"
-  argocd-version   = "4.8.12"
+  argocd-version   = "4.8.15"
   argocd-namespace = "argocd"
 
   //istio
@@ -21,8 +19,14 @@ locals {
 
   // hyunsu application
   hyunsu-application-name = "hyunsu-application"
-  hyunsu-application-version = "1.0.5"
+  hyunsu-application-version = "1.0.7"
   hyunsu-application-namespace = "hyunsu-application"
+
+  // jenkins
+  jenkins-name = "jenkins"
+  jenkins-version = "1.0.0"
+  jenkins-namespace = "jenkins"
+
 }
 
 module "argocd" {
@@ -50,4 +54,13 @@ module "hyunsu-application" {
   repository    = local.k8s-resource-repository
   chart         = local.hyunsu-application-name
   chart_version = local.hyunsu-application-version
+}
+
+module "jenkins" {
+  source        = "./modules/helm"
+  name          = local.jenkins-name
+  namespace     = local.jenkins-namespace
+  repository    = local.k8s-resource-repository
+  chart         = local.jenkins-name
+  chart_version = local.jenkins-version
 }
